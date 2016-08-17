@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<addon id="plugin.audio.datpiff" name="datPiff" version="1.0.0" provider-name="mfd">
+<addon id="plugin.audio.datpiff" name="datPiff" version="1.0.1" provider-name="mfd">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0"/>
         <import addon="script.module.beautifulsoup4" version="4.3.2"/>
@@ -11,8 +11,8 @@
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
 		<summary lang="en">datpiff Mixtapes</summary>
-		<description lang="en">Stream exclusive/sponsered mixtapes from datpiff.com</description>
-		<license>MIT</license>
+		<description lang="en">Stream mixtapes from datpiff.com</description>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
 		<language/>
 		<website>www.datpiff.com</website>
 		<forum/>
