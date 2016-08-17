@@ -133,7 +133,7 @@ def parse_mixtapes(url):
         mixtape['artist'] = node.find(class_ = 'artist').text.encode("ascii", "ignore")
         mixtape['title'] = node.find(class_ = 'title').text.encode("ascii", "ignore")
         mixtape['art'] = node.find(class_ = 'contentThumb').a.img['src']
-        mixtape['url'] = 'http://www.datpiff.com{}'.format(node.find(class_ = 'title').a['href'])
+        mixtape['url'] = 'http://www.datpiff.com{0}'.format(node.find(class_ = 'title').a['href'])
         mixtapes.append(mixtape)		
         
     return mixtapes
