@@ -85,7 +85,7 @@ def parse_tracks(url):
     artist = page.find(class_ = 'tapeDetails').find(class_ = 'artist').text.encode("ascii", "ignore")
     album = page.find(class_ = 'tapeDetails').find(class_ = 'title').text.encode("ascii", "ignore")
     playcount = int(page.find(class_ = 'tapeDetails').find(class_ = 'listens').text.replace(',', ''))	
-    mixtape_id = page.find('meta', {'name': 'al:ios:url'})['content'].replace('datpiff://mixtape/', '')
+    mixtape_id = page.find('meta', {'name': 'al:ios:url'})['content'].replace('https://mobile.datpiff.com/mixtape/', '')
     
     track_nodes = page.find(class_ = 'tracklist').find_all('li')	
     for node in track_nodes:
