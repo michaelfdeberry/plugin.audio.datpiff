@@ -60,7 +60,6 @@ def guess_mp3_url(directory, id, title, length):
 def parse_mp3_url(mixtape_id, mixtape_hash, track_number, track_title): 
     removedChars = ['-', '.', '\'', ',', '{', '}', '@', '$', '&']
     directory = mixtape_id[0]
-    id = re.match(r'.*?id=(.*?)&', mixtape_hash, re.I).group(1) 	
     track = '{0}'.format(track_number).rjust(2, '0')
     
     title = track_title
@@ -71,10 +70,10 @@ def parse_mp3_url(mixtape_id, mixtape_hash, track_number, track_title):
     
     #The URL length is inconsistent, but the title part max seems to be bewteen 49 - 55 characters
     if len(title) > 49: 
-        title = guess_mp3_url(directory, id, title, min(len(title) - 1, 56))        
+        title = guess_mp3_url(directory, mixtape_hash, title, min(len(title) - 1, 56))        
     title = title.replace(' ', '%20')							   
 
-    return 'http://hw-mp3.datpiff.com/mixtapes/{0}/{1}/{2}.mp3'.format(directory, id, title)
+    return 'http://hw-mp3.datpiff.com/mixtapes/{0}/{1}/{2}.mp3'.format(directory, mixtape_hash, title)
     
 def parse_tracks(url):
     tracks = []
@@ -85,14 +84,20 @@ def parse_tracks(url):
     album = page.find(class_ = 'tapeDetails').find(class_ = 'title').text.encode("ascii", "ignore")
     playcount = int(page.find(class_ = 'tapeDetails').find(class_ = 'listens').text.replace(',', ''))	
     mixtape_id = page.find('meta', {'name': 'twitter:app:url:iphone'})['content'].replace('https://mobile.datpiff.com/mixtape/', '')
-    
+    mixtape_hash = ''
+
     track_nodes = page.find(class_ = 'tracklist').find_all('li')	
     for node in track_nodes:
         track = { 'art': art, 'artist': artist, 'album': album, 'playcount': playcount }	
         track['title'] = node.find(class_ = 'trackTitle').text
         track['trackNumber'] = int(node.find(class_ = 'tracknumber').text.replace('.', ''))
         track['duration'] = parse_duration(node.find('meta', { 'itemprop': 'duration' })['content']) 
-        track['url'] = parse_mp3_url(mixtape_id, node.find('meta', { 'itemprop': 'url' })['content'], track['trackNumber'], track['title'])				
+
+        if mixtape_hash == '':
+            meta_player_url = node.find('meta', { 'itemprop': 'url' })['content']
+            mixtape_hash = re.match(r'.*?player\/(.*?)\?', meta_player_url, re.I).group(1)
+
+        track['url'] = parse_mp3_url(mixtape_id, mixtape_hash, track['trackNumber'], track['title'])				
         tracks.append(track)
     
     return tracks
