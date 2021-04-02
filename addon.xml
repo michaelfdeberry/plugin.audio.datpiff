@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<addon id="plugin.audio.datpiff" name="datPiff" version="1.0.3" provider-name="mfd">
+<addon id="plugin.audio.datpiff" name="datPiff" version="2.0.0" provider-name="mfd">
 	<requires>
-		<import addon="xbmc.python" version="2.24.0"/>
-        <import addon="script.module.beautifulsoup4" version="4.3.2"/>
-		<import addon="script.module.requests" version="2.9.1"/>
+		<import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.beautifulsoup4" version="4.9.3"/>
+		<import addon="script.module.requests" version="2.22.0"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="datpiff.py">
 		<provides>audio</provides>
@@ -18,5 +18,9 @@
 		<forum/>
 		<source>https://github.com/michaelfdeberry/plugin.audio.datpiff</source>
 		<email>mdeberry at vitreousoft dot com</email>
+		<assets>
+			<icon>resources/icon.png</icon>
+			<fanart>resources/fanart.jpg</fanart>
+    	</assets>
 	</extension>
 </addon>
