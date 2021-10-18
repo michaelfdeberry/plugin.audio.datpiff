@@ -57,7 +57,7 @@ def guess_mp3_url(directory, id, title, length):
     return truncated_title
     
 def parse_mp3_url(mixtape_id, mixtape_hash, track_number, track_title): 
-    removedChars = ['-', '.', '\'', ',', '{', '}', '@', '$', '&']
+    removedChars = ['-', '.', '\'', ',', '{', '}', '@', '$', '&', ':', ';']
     directory = mixtape_id[0]
     track = f'{track_number}'.rjust(2, '0')
     
