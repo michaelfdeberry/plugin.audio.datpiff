@@ -1,5 +1,7 @@
 # datPiff Addon for Kodi
 
+Archived since datpiff has shutdown and I won't be migrating this to the internet archive backup. 
+
 Addon for http://www.datpiff.com/
 
 ## Installation
